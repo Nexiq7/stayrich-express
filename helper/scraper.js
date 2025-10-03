@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export const scrapeProduct = async (productUrl) => {
-     const browser = await puppeteer.launch({ headless: true });
+     const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
      const page = await browser.newPage();
 
      await page.goto(productUrl, { waitUntil: 'domcontentloaded' });
