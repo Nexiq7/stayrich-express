@@ -27,6 +27,9 @@ export default class ProductsService {
           return product;
      }
      deleteProductById = async (userId, id) => {
+          await prisma.priceHistory.deleteMany({
+               where: { productId: Number(id) },
+          });
           await prisma.product.deleteMany({
                where: { id: Number(id), userId: Number(userId) },
           });
